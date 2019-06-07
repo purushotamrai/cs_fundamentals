@@ -157,10 +157,16 @@ class LinkedList {
                 current = current.next;
                 count++;
 
-                if (count > this.size) {
-                    console.log('loop detected');
+                if (count >= this.size) {
+                    console.log('loop detected at ');
+                    console.log(current.element);
                     return true;
                 }
+            }
+            
+            if (count == this.size - 1) {
+                console.log('no loop detected');
+                return false;
             }
 
         }
@@ -179,9 +185,12 @@ TestLinkedList.append({'D' : 'Dog'});
 
 // TestLinkedList.print();
 
+TestLinkedList.detectLoop();
+
 // Create a loop -> a,b,c,d,b
+console.log('creating a loop now');
 TestLinkedList.tail.next = TestLinkedList.head.next;
 
-TestLinkedList.print();
+// TestLinkedList.print();
 
 TestLinkedList.detectLoop();
