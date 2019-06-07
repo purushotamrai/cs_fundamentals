@@ -138,7 +138,6 @@ class LinkedList {
             // var linkedListPrint = '';
             var count = 0
             while(current.next && count <= this.size) {
-                console.log(current);
                 current = current.next;
                 count++;
             }
@@ -163,12 +162,35 @@ class LinkedList {
                     return true;
                 }
             }
-            
+
             if (count == this.size - 1) {
                 console.log('no loop detected');
                 return false;
             }
 
+        }
+        else {
+            console.log('LinkedList Empty');
+        }
+    }
+
+    detectLoopOptimized() {
+        var current = this.head;
+
+        if (this.size > 0) {
+            var tailNext = this.tail.next;
+
+            while (current.next) {
+                if (current.next === tailNext) {
+                    console.log('loop detected at ');
+                    console.log(tailNext.element);
+                    return true;
+                }
+                current = current.next;
+            }
+
+            console.log('no loop detected');
+            return false;
         }
         else {
             console.log('LinkedList Empty');
@@ -194,3 +216,4 @@ TestLinkedList.tail.next = TestLinkedList.head.next;
 // TestLinkedList.print();
 
 TestLinkedList.detectLoop();
+TestLinkedList.detectLoopOptimized();
